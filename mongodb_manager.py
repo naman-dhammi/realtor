@@ -1,11 +1,19 @@
+import streamlit as st
+from pymongo import DESCENDING
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+
 from configurations import MONGO_DB_CONNECTION, MONGO_DB_DATABASE
+
+
+@st.cache_resource
+def init_connection():
+    return MongoClient(MONGO_DB_CONNECTION, server_api=ServerApi('1'))
 
 
 # Mongo DB Manager
 class MongoDBManager:
-    client = MongoClient(MONGO_DB_CONNECTION, server_api=ServerApi('1'))
+    client = init_connection()
     db = client[MONGO_DB_DATABASE]
 
     def getData(self, table: str, uuid: str):
@@ -17,7 +25,7 @@ class MongoDBManager:
     def getAllData(self, table: str):
         Table = self.db[table]
         # Get All Data from Mongo
-        collection = list(Table.find())
+        collection = list(Table.find().sort("uploading_date", DESCENDING))
         return collection
 
     def addData(self, table: str, data: dict):
