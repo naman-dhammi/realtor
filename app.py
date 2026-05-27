@@ -36,7 +36,7 @@ css = """
     }
     .box {
       float:left;
-      padding: 30px;
+      padding: 10px;
       background: #FBCC131A;
       border-radius: 12px;
       text-align: center;
@@ -81,16 +81,16 @@ if __name__ == "__main__":
                         <div class=direction_contact> ↗ {property['direction']}</div>
                         <div class=direction_contact style="margin-left:auto;">Ph. +91 {CONTACT_NUMBER}</div>
                 </div>
-                <div class=container>
-                    <div class=box style='min-width:20%'>
+                <div class=container style="display:flex; width:100%; gap:10px;">
+                    <div class=box style='width:40%'>
                        <div class=h_1 >🏷 Price<br> </div>
                         <div class=h_1_value>{format_currency(property['price_per_gaz'], 'INR', '#,##,##0', locale='en_IN', currency_digits=False)}/Sq Yd </div>
                     </div>
-                    <div class=box>
+                    <div class=box style='width:20%'>
                         <div class=h_1> ⎕ Area<br> </div>
                         <div class=h_1_value>{format_decimal(property['area_size_in_gaz'], locale='en_IN')} Sq Yd </div>
                     </div>
-                    <div class=box>
+                    <div class=box style='width:40%;margin-right:5%'>
                         <div class=h_1>🟰 Total Costing<br></div>
                         <div class=h_1_value>{format_currency(property['price_per_gaz'] * property['area_size_in_gaz'], 'INR', '#,##,##0', locale='en_IN', currency_digits=False)}</div>
                     </div>
@@ -98,10 +98,10 @@ if __name__ == "__main__":
             """
             st.markdown(property_content, unsafe_allow_html=True)
         for_sale = f"""
-        <div class=container style='gap:0px;'>
-            <div class=box style='background: rgb(255,255,255);font-size:18px;box-shadow:none;'>🏠</div> 
-            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;'>Description</div> 
-            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;'>{property["description"]}</div>
+        <div class=container style='display:flex; width:100%; gap:0px;'>
+            <div class=box style='background: rgb(255,255,255);font-size:18px;box-shadow:none;width:10%;'>🏠</div> 
+            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;width:20%;'><b>Description</b></div> 
+            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;width:70%;'>{property["description"]}</div>
         </div>
         <div style="width: 100%;background: linear-gradient(135deg, #22c55e, #16a34a);color: white;padding: 2px;border-radius: 14px;text-align: center;box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);">For Sale</div>
         """
