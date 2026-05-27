@@ -144,7 +144,7 @@ if st.session_state["authentication_status"]:
                 st.image("https://dummyimage.com/600x400.png")
         with col2:
             try:
-                dt=property.get("uploading_date", None)
+                dt = property.get("uploading_date", None)
                 day = dt.day
                 property_content = f"""
                     <div style="display: flex;">
@@ -193,9 +193,8 @@ if st.session_state["authentication_status"]:
                 exact_plot_number = right.text_input("Exact Plot Number", value=property.get("exact_plot_number", None))
                 direction = right.text_input("Direction in which Real Estate is Facing",
                                              value=property.get("direction", None))
-                price_per_gaz = left.number_input("Price/Sq Yd", min_value=0, value=property.get("price_per_gaz", 0))
-                area_size_in_gaz = right.number_input("Area in Sq Yd", min_value=0,
-                                                      value=property.get("area_size_in_gaz", 0))
+                price_per_gaz = left.number_input("Price/Sq Yd", value=property.get("price_per_gaz", 0))
+                area_size_in_gaz = right.number_input("Area in Sq Yd", value=property.get("area_size_in_gaz", 0))
                 description = left.text_area("Description of Real Estate", value=property.get("description", None))
                 image = right.file_uploader("Upload Image of Real Estate",
                                             type=["jpg", "jpeg", "png", "heic", "heif"])

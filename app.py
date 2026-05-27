@@ -5,7 +5,7 @@ from configurations import MONGO_DB_REAL_ESTATE_TABLE, CONTACT_NUMBER
 from mongodb_manager import MongoDBManager
 
 # Page Tab Title & Layout
-st.set_page_config(page_title="Dhammi Enterprises", layout="wide")
+st.set_page_config(page_title="Dhammi Enterprises", layout="centered", page_icon="$")
 
 # Page Style CSS
 css = """
@@ -15,11 +15,15 @@ css = """
     }
     
     .h_1 {
-        font-size: 16px;
+        font-size: 14px;
     }
     .h_1_value {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bold;
+    }
+    .direction_contact {
+        margin-left:5%;
+        margin-bottom:10px;
     }
     .container {
       display: Inline-flex;             
@@ -70,14 +74,13 @@ if __name__ == "__main__":
                 st.image("https://dummyimage.com/600x400.png")
         with col2:
             property_content = f"""
-                <div style="display: flex;">
                     <div class=container>
-                        <div style='font-weight:bold; font-size:28px;'>📍{property['location']}</div>
-                        <div> ↗ {property['direction']}</div>
+                        <div style='font-weight:bold; font-size:18px;'>📍{property['location']}</div>
                     </div>
-                        <div style="margin-left:auto;">Ph. +91 {CONTACT_NUMBER}</div>
+                <div style="display: flex;">
+                        <div class=direction_contact> ↗ {property['direction']}</div>
+                        <div class=direction_contact style="margin-left:auto;">Ph. +91 {CONTACT_NUMBER}</div>
                 </div>
-                
                 <div class=container>
                     <div class=box style='min-width:20%'>
                        <div class=h_1 >🏷 Price<br> </div>
@@ -92,17 +95,17 @@ if __name__ == "__main__":
                         <div class=h_1_value>{format_currency(property['price_per_gaz'] * property['area_size_in_gaz'], 'INR', '#,##,##0', locale='en_IN', currency_digits=False)}</div>
                     </div>
                 </div>
-                
-                <div class=container style='gap:0px;'>
-                    <div class=box style='background: rgb(255,255,255);font-size:30px;box-shadow:none;'>🏠</div> 
-                    <div class=box style='background: rgb(255,255,255);font-size:16px;box-shadow:none;'>Description</div> 
-                    <div class=box style='background: rgb(255,255,255);font-size:14px;box-shadow:none;'>{property["description"]}</div>
-                </div>
-                
-                <div style="width: 100%;background: linear-gradient(135deg, #22c55e, #16a34a);color: white;padding: 2px;border-radius: 14px;text-align: center;box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);">For Sale</div>
-            
             """
             st.markdown(property_content, unsafe_allow_html=True)
+        for_sale = f"""
+        <div class=container style='gap:0px;'>
+            <div class=box style='background: rgb(255,255,255);font-size:18px;box-shadow:none;'>🏠</div> 
+            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;'>Description</div> 
+            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;'>{property["description"]}</div>
+        </div>
+        <div style="width: 100%;background: linear-gradient(135deg, #22c55e, #16a34a);color: white;padding: 2px;border-radius: 14px;text-align: center;box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);">For Sale</div>
+        """
+        st.markdown(for_sale, unsafe_allow_html=True)
         st.markdown("---")
 
     # Footer
