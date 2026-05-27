@@ -45,6 +45,17 @@ css = """
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
+    .description {
+      float:left;
+      padding: 5px;
+      background: #FBCC131A;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
 </style>
 """
 st.markdown(css, unsafe_allow_html=True)
@@ -99,9 +110,9 @@ if __name__ == "__main__":
             st.markdown(property_content, unsafe_allow_html=True)
         for_sale = f"""
         <div class=container style='display:flex; width:100%; gap:0px;'>
-            <div style='background: rgb(255,255,255);font-size:18px;box-shadow:none;width:3%;'>🏠</div> 
-            <div class=box style='background: rgb(255,255,255);font-size:10px;box-shadow:none;width:15%;'><b>Description</b></div> 
-            <div class=box style='background: rgb(255,255,255);font-size:12px;box-shadow:none;width:82%;'>{property["description"]}</div>
+            <div class=description style='background: rgb(255,255,255);font-size:18px;box-shadow:none;width:3%;'>🏠</div> 
+            <div class=description style='background: rgb(255,255,255);font-size:10px;box-shadow:none;width:15%;'><b>Description</b></div> 
+            <div class=description style='background: rgb(255,255,255);font-size:12px;box-shadow:none;width:82%;'>{property["description"]}</div>
         </div>
         <div style="width: 100%;background: linear-gradient(135deg, #22c55e, #16a34a);color: white;padding: 2px;border-radius: 14px;text-align: center;box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);">For Sale</div>
         """
